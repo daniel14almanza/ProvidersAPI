@@ -22,6 +22,19 @@ builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IProviderService, ProviderService>();
 
 
+// Add CORS service
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +47,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// Use the CORS policy globally
+app.UseCors("AllowReactApp");
 
 app.MapControllers();
 

@@ -16,6 +16,8 @@ namespace ProvidersAPI.Repositories
 
         public async Task AddAsync(Provider provider)
         {
+            provider.LastEdited = DateTime.UtcNow;
+
             _context.Providers.Add(provider);
             await _context.SaveChangesAsync();
         }
@@ -31,7 +33,15 @@ namespace ProvidersAPI.Repositories
 
         }
 
+        /*
         public async Task<IEnumerable<Provider>> GetAllAsync() => await _context.Providers.ToListAsync();
+        */
+        public async Task<IEnumerable<Provider>> GetAllAsync()
+        {
+            return await _context.Providers
+                .OrderByDescending(p => p.LastEdited)
+                .ToListAsync();
+        }
 
         public async Task<Provider?> GetByIdAsync(int id) => await _context.Providers.FindAsync(id);
 
