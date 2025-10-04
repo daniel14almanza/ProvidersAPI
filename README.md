@@ -1,100 +1,62 @@
-# My .NET Core API
 
-## Table of Contents
+# .NET Core Supplier API
 
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Build and Run](#build-and-run)
-- [Test the API](#test-the-api)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-
+Backend API for managing supplier records (CRUD) 
 
 ---
 
 ## Prerequisites
 
-Before you start, make sure you have installed:
-
-- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (or your version)
-- Optional: IDE like [Visual Studio](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/)
+- .NET 8 SDK
+- Optional: Visual Studio or VS Code
 
 ---
 
 ## Setup
 
-1. **Clone the repository**
+1. Clone the repository:
 
-```bash
-git clone https://github.com/username/dotnet-api.git
-cd dotnet-api
+    git clone https://github.com/username/dotnet-suppliers.git
+    cd dotnet-suppliers
 
-2.Restore dependencies
+2. Restore dependencies:
 
-dotnet restore
+    dotnet restore
 
-Build and Run
+---
 
-Build the project
+## Build & Run (development)
 
-dotnet build
+    dotnet build
+    dotnet run
 
+- Default Kestrel URLs:
+    https://localhost:5001
+    http://localhost:5000
 
-Run the API
+---
 
-dotnet run
+## API Summary
 
+- Supplier fields (validated):
+  - Legal name, Trade name, Tax ID, Phone, Email, Website, Address, Country, Annual revenue, Last edit timestamp
+- Endpoints:
+  - `GET /api/Provider`
+  - `POST /api/Provider`
+  - `GET /api/Provider/{id}`
+  - `PUT /api/Provider/{id}`
+  - `DELETE /api/Provider/{id}`
 
-By default, the API will run on:
+## Project Structure
 
-https://localhost:5001
+/dotnet-suppliers
+    Controllers/
+    Models/
+    Services/
+    Properties/
+        launchSettings.json
+    Program.cs
+    Startup.cs
+    dotnet-suppliers.csproj
+    README.md
 
-http://localhost:5000
-
-Optional: Run in development mode with hot reload
-
-dotnet watch run
-
-Test the API
-
-You can test your endpoints using tools like Postman
- or curl:
-
-curl https://localhost:5001/weatherforecast
-
-
-Or open a browser at https://localhost:5001/swagger if Swagger is configured.
-
-Project Structure
-
-Typical .NET Core API layout:
-
-/MyDotnetApi
-├── Controllers/          # API controllers
-├── Models/               # Data models
-├── Properties/
-│   └── launchSettings.json  # Local launch settings
-├── Program.cs            # Entry point
-├── Startup.cs            # Configuration
-├── MyDotnetApi.csproj    # Project file
-├── .gitignore
-└── README.md
-
-
-bin/ and obj/ are generated at build time and should not be committed.
-
-Contributing
-
-Fork the repository.
-
-Create a new branch for your feature or bugfix.
-
-Commit changes with descriptive messages.
-
-Open a Pull Request.
-
-License
-
-This project is licensed under the MIT License. See LICENSE
- for details.
